@@ -15,4 +15,9 @@ class Node {
     List<Node> getSons() {
         return new ArrayList<>(nodesSon);
     }
+
+    boolean hasSon() {
+        return (nodesSon.size() > 0);
+    }
+
 }
