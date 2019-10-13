@@ -7,4 +7,17 @@ public class Tree {
         root = node;
     }
 
+    boolean isEmpty() {
+        return root == null;
+    }
+
+    boolean isLeaf() {
+        try {
+            return !root.hasSon();
+        } catch(NullPointerException e) {
+            System.out.println("Tree must not be empty");
+            throw new NullPointerException();
+        }
+    }
+
 }
