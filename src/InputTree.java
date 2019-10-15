@@ -1,9 +1,9 @@
 import java.awt.*;
 
 public class InputTree {
-    List input;
+    String input;
 
-    InputTree(List input){
+    InputTree(String input){
         this.input = input;
     }
 
