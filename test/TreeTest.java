@@ -21,7 +21,7 @@ public class TreeTest {
     public void output() {
         String s1 = t1.output();
         System.out.println(s1);
-        assertTrue(t1.output().equals("(0(1-2-3-4-5-6-7-8-9-))"));
+        assertTrue(t1.output().equals("0(1()2()3()4()5()6()7()8()9())"));
 
     }
 }

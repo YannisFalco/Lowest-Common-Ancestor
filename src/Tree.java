@@ -25,17 +25,13 @@ public class Tree {
     }
 
     private String treeStruct(Node node){
+        String res = Integer.toString(node.getValue());
         List<Node> nodes = node.getSons();
-        if(nodes.size() == 0) return "()";
-        String res = "(";
-        for(Node node1 : nodes){
-            res = res.concat(Integer.toString(node1.getValue()));
-            res = res.concat("-");
-        }
-        res = res.concat(")");
+        res += "(";
         for(Node node1 : nodes){
             res =res.concat(treeStruct(node1));
         }
+        res = res.concat(")");
         return res;
     }
 
