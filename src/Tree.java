@@ -20,4 +20,23 @@ public class Tree {
         }
     }
 
+    String output() {
+        return treeStruct(this.root);
+    }
+
+    private String treeStruct(Node node){
+        List<Node> nodes = node.getSons();
+        if(nodes.size() == 0) return "()";
+        String res = "(";
+        for(Node node1 : nodes){
+            res = res.concat(Integer.toString(node1.getValue()));
+            res = res.concat("-");
+        }
+        res = res.concat(")");
+        for(Node node1 : nodes){
+            res =res.concat(treeStruct(node1));
+        }
+        return res;
+    }
+
 }
