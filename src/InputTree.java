@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 public class InputTree {
-    String input;
+    private String input;
 
     InputTree(String input){
         this.input = input;

@@ -23,5 +23,8 @@ public class InputTreeTest {
         inputTree3 = new InputTree("0(1(3())2(4()))");
         assertEquals(inputTree3.generateTree().output(), "0(1(3())2(4()))");
 
+        inputTree1 = new InputTree("0(10()20()30()40()522()610()721()-88()90())");
+        assertEquals(inputTree1.generateTree().output(), "0(10()20()30()40()522()610()721()-88()90())");
+
     }
 }
