@@ -25,13 +25,18 @@ public class InputTree {
 
     private int getRoot(String input){
         char[] inputChar = input.toCharArray();
-        return Integer.parseInt(Character.toString(inputChar[0]));
+        int i=0;
+        for(;i<inputChar.length && inputChar[i] != '('; i++);
+        return Integer.parseInt(input.substring(0,i));
     }
 
     private String deleteRoot(String input){
+        char[] inputChar = input.toCharArray();
         StringBuilder stringBuilder = new StringBuilder(input);
         stringBuilder.deleteCharAt(input.length()-1);
-        stringBuilder.delete(0,2);
+        int i=0;
+        for(;i<inputChar.length && inputChar[i] != '('; i++);
+        stringBuilder.delete(0,++i);
         return stringBuilder.toString();
     }
 
@@ -39,10 +44,11 @@ public class InputTree {
         char[] inputChar = input.toCharArray();
         List<String> res = new ArrayList<>();
         int j = 0;
-        int i = 2;
-        int countSons = 0;
+        int i=0;
         int count = 1;
         while(i<inputChar.length){
+            for(;i<inputChar.length && inputChar[i] != '(';i++);
+            i++;
             while(i<inputChar.length && count != 0) {
                 if(inputChar[i] == '(') count++;
                 if(inputChar[i] == ')') count--;
@@ -51,9 +57,7 @@ public class InputTree {
             System.out.println(j +" "+  i);
             res.add(input.substring(j, i));
             j = i;
-            i+=2;
             count = 1;
-            countSons++;
         }
         return res;
     }
