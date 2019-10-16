@@ -8,4 +8,8 @@ public class Lca {
     Node getLCAFromNodes(Node node1, Node node2){
         return new Node(-1);
     }
+
+    Node getLCAFromValue(int node1, int node2){
+        return new Node(-1);
+    }
 }
