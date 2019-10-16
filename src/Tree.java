@@ -1,7 +1,12 @@
 import java.util.List;
 
 public class Tree {
+
     private Node root = null;
+
+    public Node getRoot() {
+        return root;
+    }
 
     Tree(Node node){
         root = node;
@@ -34,5 +39,6 @@ public class Tree {
         res = res.concat(")");
         return res;
     }
+
 
 }

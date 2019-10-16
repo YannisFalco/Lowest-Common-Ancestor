@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Lca {
     Tree tree;
 
@@ -5,11 +8,26 @@ public class Lca {
         this.tree = tree;
     }
 
-    Node getLCAFromNodes(Node node1, Node node2){
-        return new Node(-1);
-    }
+
 
     Node getLCAFromValue(int node1, int node2){
-        return new Node(-1);
+        Node root = tree.getRoot();
+        if(root.getValue() == node1 || root.getValue() == node2) return root;
+        return recursiveLCAFromValue(root, node1, node2);
+    }
+
+    Node recursiveLCAFromValue(Node node, int node1, int node2){
+        List<Node> nodeSon = new ArrayList<>(node.getSons());
+        int countTrue = 0;
+        if(node.getValue() == node1 || node.getValue() == node2) return node;
+        for(Node nodeM : nodeSon){
+            Node res = recursiveLCAFromValue(nodeM, node1, node2);
+            if(res != null){
+                countTrue++;
+                if(res.getValue() != node1 && res.getValue() != node2) return node;
+            }
+            if(countTrue>2) return node;
+        }
+        return null;
     }
 }

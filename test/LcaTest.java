@@ -37,21 +37,17 @@ public class LcaTest {
         l4 = new Lca(t4);
         l5 = new Lca(t5);
     }
-    @Test
-    public void getLCAFromNodes() {
-
-    }
 
     @Test
     public void getLCAFromValue() {
-        assertEquals(l1.getLCAFromValue(1,9),0);
-        assertEquals(l1.getLCAFromValue(0,3), 0);
-        assertEquals(l1.getLCAFromValue(1,1), 0);
+        assertEquals(l1.getLCAFromValue(1,9).getValue(),0);
+        assertEquals(l1.getLCAFromValue(0,3).getValue(), 0);
+        assertEquals(l1.getLCAFromValue(1,1).getValue(), 0);
 
-        assertEquals(l2.getLCAFromValue(9,1), -1);
-        assertEquals(l2.getLCAFromValue(9,0), 0);
+        assertEquals(l2.getLCAFromValue(9,1).getValue(), -1);
+        assertEquals(l2.getLCAFromValue(9,0).getValue(), 0);
 
-        assertEquals(l3.getLCAFromValue(3,5), 1);
-        assertEquals(l3.getLCAFromValue(4,6), 0);
+        assertEquals(l3.getLCAFromValue(3,5).getValue(), 1);
+        assertEquals(l3.getLCAFromValue(4,6).getValue(), 0);
     }
 }
