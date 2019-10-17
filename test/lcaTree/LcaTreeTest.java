@@ -1,9 +1,12 @@
+package lcaTree;
+import lcaDataStructure.InputTree;
+import lcaDataStructure.Tree;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class LcaTest {
+public class LcaTreeTest {
 
     Tree t1;
     Tree t2;
@@ -11,11 +14,11 @@ public class LcaTest {
     Tree t4;
     Tree t5;
 
-    Lca l1;
-    Lca l2;
-    Lca l3;
-    Lca l4;
-    Lca l5;
+    LcaTree l1;
+    LcaTree l2;
+    LcaTree l3;
+    LcaTree l4;
+    LcaTree l5;
 
     @Before
     public void initialize(){
@@ -31,11 +34,11 @@ public class LcaTest {
         t4 = i4.generateTree();
         t5 = i5.generateTree();
 
-        l1 = new Lca(t1);
-        l2 = new Lca(t2);
-        l3 = new Lca(t3);
-        l4 = new Lca(t4);
-        l5 = new Lca(t5);
+        l1 = new LcaTree(t1);
+        l2 = new LcaTree(t2);
+        l3 = new LcaTree(t3);
+        l4 = new LcaTree(t4);
+        l5 = new LcaTree(t5);
     }
 
     @Test

@@ -1,4 +1,4 @@
-import org.junit.Before;
+package lcaDataStructure;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

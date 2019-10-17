@@ -1,10 +1,15 @@
+package lcaTree;
+
+import lcaDataStructure.Node;
+import lcaDataStructure.Tree;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lca {
+public class LcaTree {
     Tree tree;
 
-    Lca(Tree tree){
+    LcaTree(Tree tree){
         this.tree = tree;
     }
 

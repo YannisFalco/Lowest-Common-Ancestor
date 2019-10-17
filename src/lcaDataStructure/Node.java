@@ -1,7 +1,9 @@
+package lcaDataStructure;
+
 import java.util.ArrayList;
 import java.util.List;
 
-class Node {
+public class Node {
     private List<Node> nodesSon;
     private int value;
 
@@ -14,7 +16,7 @@ class Node {
         nodesSon.add(node);
     }
 
-    List<Node> getSons() {
+    public List<Node> getSons() {
         return new ArrayList<>(nodesSon);
     }
 
@@ -22,7 +24,7 @@ class Node {
         return (nodesSon.size() > 0);
     }
 
-    int getValue(){
+    public int getValue(){
         return this.value;
     }
 

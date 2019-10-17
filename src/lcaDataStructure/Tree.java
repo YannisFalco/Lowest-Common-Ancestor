@@ -1,8 +1,10 @@
+package lcaDataStructure;
+
 import java.util.List;
 
 public class Tree {
 
-    private Node root = null;
+    private Node root;
 
     public Node getRoot() {
         return root;
@@ -16,14 +18,6 @@ public class Tree {
         return root == null;
     }
 
-    boolean isLeaf() {
-        try {
-            return !root.hasSon();
-        } catch(NullPointerException e) {
-            System.out.println("Tree must not be empty");
-            throw new NullPointerException();
-        }
-    }
 
     String output() {
         return treeStruct(this.root);

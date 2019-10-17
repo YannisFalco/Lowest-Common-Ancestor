@@ -1,13 +1,19 @@
+package lcaDataStructure;
+
+import lcaDataStructure.Node;
+import lcaDataStructure.Tree;
+
 import java.util.ArrayList;
 import java.util.List;
+
 public class InputTree {
     private String input;
 
-    InputTree(String input){
+    public InputTree(String input){
         this.input = input;
     }
 
-    Tree generateTree() {
+    public Tree generateTree() {
         return new Tree(treeFromString(this.input));
     }
 
@@ -54,7 +60,6 @@ public class InputTree {
                 if(inputChar[i] == ')') count--;
                 i++;
             }
-            System.out.println(j +" "+  i);
             res.add(input.substring(j, i));
             j = i;
             count = 1;
