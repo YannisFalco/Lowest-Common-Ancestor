@@ -28,6 +28,9 @@ public class NodeDouble{
     void addSon(NodeDouble node){
         sons.add(node);
     }
+    void addSons(List<NodeDouble> nodes){
+        sons.addAll(nodes);
+    }
 
     public void addParent(NodeDouble parent) {
         this.parents.add(parent);

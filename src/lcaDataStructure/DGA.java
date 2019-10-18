@@ -10,6 +10,10 @@ public class DGA {
         roots = new ArrayList<>();
     }
 
+    DGA(NodeDouble root){
+        this.roots = new ArrayList<>();
+        this.roots.add(root);
+    }
     DGA(List<NodeDouble> roots){
         this.roots = new ArrayList<>(roots);
     }
@@ -21,7 +25,6 @@ public class DGA {
     void computeDepth(){
         for(int i =0; i<this.roots.size(); i++){
             NodeDouble nodeDouble = this.roots.get(i);
-            nodeDouble.setDepth(0);
             recursiveDepth(nodeDouble, 0);
         }
     }
@@ -29,30 +32,60 @@ public class DGA {
     private void recursiveDepth(NodeDouble node, int depth){
         List<NodeDouble> nodes = node.getSons();
         for(NodeDouble node1 : nodes){
-            if(node.getDepth() < (depth+1)){
-                node.setDepth(depth+1);
-            }
-        }
+            recursiveDepth(node1, depth+1);
 
+        }
+        if(node.getDepth() < (depth)){
+            node.setDepth(depth);
+        }
 
     }
 
     String output() {
-        String res = "";
-        for(NodeDouble nodeDouble: this.roots){
-            res += dGAStruct(nodeDouble);
-        }
+
+        if(roots.size() < 0) return "";
+
+        String res = dGAStruct(this.roots, new ArrayList<Integer>());
+
+
         return res;
     }
 
-    private String dGAStruct(NodeDouble node){
-        String res = Integer.toString(node.getValue());
-        List<NodeDouble> nodes = node.getSons();
-        res += "(";
-        for(NodeDouble node1 : nodes){
-            res =res.concat(dGAStruct(node1));
+    private String dGAStruct(List<NodeDouble> nodes, List<Integer> valueSaved){
+
+        StringBuilder st = new StringBuilder();
+        for(int i =0; i<nodes.size(); i++){
+            NodeDouble nodeDouble = nodes.get(i);
+            st.append(nodeDouble.getValue());
+            st.append('(');
+            if(!valueSaved.contains(nodeDouble.getValue())){
+                valueSaved.add(nodeDouble.getValue());
+                st.append(dGAStruct(nodeDouble.getSons(),valueSaved));
+            }
+
+            st.append(')');
+
         }
-        res = res.concat(")");
-        return res;
+        return st.toString();
+    }
+
+    //mainly used for testing
+    NodeDouble getNodeFromValue(int value){
+        NodeDouble res;
+        for(int i =0; i<this.roots.size(); i++){
+            NodeDouble nodeDouble = this.roots.get(i);
+            res = recursiveGetNodeFromValue(nodeDouble, value);
+            if(res != null) return res;
+        }
+        return null;
+    }
+
+    private NodeDouble recursiveGetNodeFromValue(NodeDouble nodeDouble,int value){
+        if(nodeDouble.getValue() == value) return nodeDouble;
+        for(NodeDouble nodeDouble1 : nodeDouble.getSons()){
+            NodeDouble res = recursiveGetNodeFromValue(nodeDouble1, value);
+            if(res != null) return res;
+        }
+        return null;
     }
 }
