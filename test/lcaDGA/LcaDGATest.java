@@ -1,5 +1,7 @@
-package lcaDataStructure;
+package lcaDGA;
 
+import lcaDataStructure.DGA;
+import lcaDataStructure.NodeDouble;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,11 +10,26 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class DGATest {
+public class LcaDGATest {
 
-     DGA dga1;
-     DGA dga2;
+    DGA dga1;
+    DGA dga2;
+    /*
+        DGA 1 :
+        1->2->3->4->5->9->10-->11
+                 |->6->7->8->--|
 
+        1(2(3(4(5(9(10(11())))6(7(8(11)))))))
+
+        DGA 2 :
+        1->13->4->5->6
+                    | down
+        2->7->8->9->10
+        3->11->12-->|
+
+        1(13(4(5(6(10())))))2(7(8(9(10))))3(11(12(10)))
+
+     */
     @Before
     public void initialize(){
         NodeDouble node1 = new NodeDouble(1);
@@ -40,7 +57,7 @@ public class DGATest {
         node10.addSon(node11);
 
         dga1 = new DGA(node1);
-        dga1.computeDepth();
+
 
         NodeDouble node1_2 = new NodeDouble(1);
         NodeDouble node2_2 = new NodeDouble(2);
@@ -75,30 +92,35 @@ public class DGATest {
         root.add(node3_2);
         dga2 = new DGA(root);
     }
-    @Test
-    public void output() {
-        assertEquals("1(2(3(4(5(9(10(11())))6(7(8(11)))))))",dga1.output());
-        assertEquals("1(13(4(5(6(10())))))2(7(8(9(10))))3(11(12(10)))", dga2.output());
-    }
 
     @Test
-    public void getNodeFromValue(){
-        NodeDouble nodeDouble = dga1.getNodeFromValue(3);
-        assertEquals(nodeDouble.getValue(), 3);
+    public void getLCAFromValue(){
+        LcaDGA lca1 = new LcaDGA(dga1);
+        List<Integer> nodes1 = new ArrayList<>();
+        nodes1.add(11);
+        List<NodeDouble> res1 = lca1.getLCAFromValue(nodes1);
+        assertEquals(res1.size(), 2);
+
+        assertTrue(res1.contains(8));
+        assertTrue(res1.contains(10));
+
+        List<Integer> nodes2 = new ArrayList<>();
+        nodes2.add(10);
+        nodes2.add(8);
+        List<NodeDouble> res2 = lca1.getLCAFromValue(nodes1);
+
+        assertEquals(res2.size(), 1);
+        assertTrue(res2.contains(4));
+
+
+        LcaDGA lca2 = new LcaDGA(dga2);
+        List<Integer> nodes3 = new ArrayList<>();
+        nodes3.add(13);
+        List<NodeDouble> res3 = lca1.getLCAFromValue(nodes1);
+
+        assertEquals(res3.size(), 1);
+        assertTrue(res3.contains(12));
+
+
     }
-
-    @Test
-    public void computeDepth() {
-
-        List<NodeDouble> t1Roots = dga1.getRoots();
-        for(NodeDouble node : t1Roots){
-            assertEquals(0, node.getDepth());
-        }
-
-        NodeDouble nodeDouble = dga1.getNodeFromValue(3);
-
-
-        assertEquals(2, nodeDouble.getDepth());
-    }
-
 }

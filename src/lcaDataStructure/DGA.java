@@ -5,16 +5,17 @@ import java.util.List;
 
 public class DGA {
     private List<NodeDouble> roots;
+    private List<Integer> valueSavedOutput;
 
     DGA(){
         roots = new ArrayList<>();
     }
 
-    DGA(NodeDouble root){
+    public DGA(NodeDouble root){
         this.roots = new ArrayList<>();
         this.roots.add(root);
     }
-    DGA(List<NodeDouble> roots){
+    public DGA(List<NodeDouble> roots){
         this.roots = new ArrayList<>(roots);
     }
 
@@ -45,25 +46,26 @@ public class DGA {
 
         if(roots.size() < 0) return "";
 
-        String res = dGAStruct(this.roots, new ArrayList<Integer>());
+        valueSavedOutput = new ArrayList<>();
+        String res = dGAStruct(this.roots);
 
 
         return res;
     }
 
-    private String dGAStruct(List<NodeDouble> nodes, List<Integer> valueSaved){
+    private String dGAStruct(List<NodeDouble> nodes){
 
         StringBuilder st = new StringBuilder();
         for(int i =0; i<nodes.size(); i++){
             NodeDouble nodeDouble = nodes.get(i);
             st.append(nodeDouble.getValue());
-            st.append('(');
-            if(!valueSaved.contains(nodeDouble.getValue())){
-                valueSaved.add(nodeDouble.getValue());
-                st.append(dGAStruct(nodeDouble.getSons(),valueSaved));
-            }
 
-            st.append(')');
+            if(!valueSavedOutput.contains(nodeDouble.getValue())){
+                st.append('(');
+                valueSavedOutput.add(nodeDouble.getValue());
+                st.append(dGAStruct(nodeDouble.getSons()));
+                st.append(')');
+            }
 
         }
         return st.toString();

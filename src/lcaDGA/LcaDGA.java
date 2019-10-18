@@ -2,19 +2,27 @@ package lcaDGA;
 
 import lcaDataStructure.DGA;
 import lcaDataStructure.Node;
+import lcaDataStructure.NodeDouble;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LcaDGA {
-    DGA dga;
+
+    private DGA dga;
+    private List<NodeDouble> res;
 
     LcaDGA(DGA dga){
         this.dga = dga;
+        res = new ArrayList<>();
     }
 
-    List<Node> getLCAFromValue(List<Integer> nodesValue){
+    List<NodeDouble> getLCAFromValue(List<Integer> nodesValue){
+        res = new ArrayList<>();
         return null;
     }
+
+
 
 
 }
