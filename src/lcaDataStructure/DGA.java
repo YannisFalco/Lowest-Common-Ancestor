@@ -23,7 +23,7 @@ public class DGA {
         return new ArrayList<>(roots);
     }
 
-    void computeDepth(){
+    public void computeDepth(){
         for(int i =0; i<this.roots.size(); i++){
             NodeDouble nodeDouble = this.roots.get(i);
             recursiveDepth(nodeDouble, 0);
@@ -72,7 +72,7 @@ public class DGA {
     }
 
     //mainly used for testing
-    NodeDouble getNodeFromValue(int value){
+    public NodeDouble getNodeFromValue(int value){
         NodeDouble res;
         for(int i =0; i<this.roots.size(); i++){
             NodeDouble nodeDouble = this.roots.get(i);
@@ -89,5 +89,24 @@ public class DGA {
             if(res != null) return res;
         }
         return null;
+    }
+
+    public void computeParents(){
+
+        for(int i =0; i<this.roots.size(); i++){
+            NodeDouble nodeDouble = this.roots.get(i);
+            recursiveParent(nodeDouble, null);
+        }
+
+    }
+
+    private void recursiveParent(NodeDouble nodeDouble, NodeDouble parents){
+
+        List<NodeDouble> nodes = nodeDouble.getSons();
+        for(NodeDouble node1 : nodes){
+            recursiveParent(node1, nodeDouble);
+
+        }
+        nodeDouble.addParent(parents);
     }
 }

@@ -7,6 +7,7 @@ public class NodeDouble{
     private int depth = -1;
     private int value;
     private List<NodeDouble> sons = new ArrayList<>();
+    private List<NodeDouble> parents = new ArrayList<>();
 
     public NodeDouble(int value){
         this.value = value;
@@ -38,5 +39,9 @@ public class NodeDouble{
 
     public int getValue() {
         return value;
+    }
+
+    public void addParent(NodeDouble nodeDouble){
+        this.parents.add(nodeDouble);
     }
 }

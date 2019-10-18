@@ -98,28 +98,56 @@ public class LcaDGATest {
         LcaDGA lca1 = new LcaDGA(dga1);
         List<Integer> nodes1 = new ArrayList<>();
         nodes1.add(11);
-        List<NodeDouble> res1 = lca1.getLCAFromValue(nodes1);
+        List<NodeDouble> res1 = new ArrayList<>(lca1.getLCAFromValue(nodes1));
         assertEquals(res1.size(), 2);
-
-        assertTrue(res1.contains(8));
-        assertTrue(res1.contains(10));
+        List<Integer> resBis1 = new ArrayList<>();
+        for(int i = 0; i<res1.size(); i++){
+            resBis1.add(res1.get(i).getValue());
+        }
+        assertTrue(resBis1.contains(8));
+        assertTrue(resBis1.contains(10));
 
         List<Integer> nodes2 = new ArrayList<>();
         nodes2.add(10);
         nodes2.add(8);
-        List<NodeDouble> res2 = lca1.getLCAFromValue(nodes1);
+        List<NodeDouble> res2 = lca1.getLCAFromValue(nodes2);
 
         assertEquals(res2.size(), 1);
-        assertTrue(res2.contains(4));
+
+        List<Integer> resBis2 = new ArrayList<>();
+        for(int i = 0; i<res2.size(); i++){
+            resBis2.add(res2.get(i).getValue());
+        }
+        assertTrue(resBis2.contains(4));
 
 
         LcaDGA lca2 = new LcaDGA(dga2);
         List<Integer> nodes3 = new ArrayList<>();
         nodes3.add(13);
-        List<NodeDouble> res3 = lca1.getLCAFromValue(nodes1);
+        List<NodeDouble> res3 = lca2.getLCAFromValue(nodes3);
 
         assertEquals(res3.size(), 1);
-        assertTrue(res3.contains(12));
+
+        List<Integer> resBis3 = new ArrayList<>();
+        for(int i = 0; i<res3.size(); i++){
+            resBis3.add(res3.get(i).getValue());
+        }
+
+        assertTrue(resBis3.contains(1));
+
+
+        List<Integer> nodes4 = new ArrayList<>();
+        nodes4.add(1);
+        List<NodeDouble> res4 = lca2.getLCAFromValue(nodes4);
+
+        assertEquals(res4.size(), 1);
+
+        List<Integer> resBis4 = new ArrayList<>();
+        for(int i = 0; i<res4.size(); i++){
+            resBis4.add(res4.get(i).getValue());
+        }
+
+        assertTrue(resBis4.contains(1));
 
 
     }
