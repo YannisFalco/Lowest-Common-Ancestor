@@ -3,14 +3,17 @@ package lcaDataStructure;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NodeDouble extends Node {
-    int depth;
-    List<Node> parents = new ArrayList<>();
+public class NodeDouble{
+    private int depth = -1;
+    private int value;
+    private List<NodeDouble> parents = new ArrayList<>();
+    private List<NodeDouble> sons = new ArrayList<>();
+
     NodeDouble(int value){
-        super(value);
+        this.value = value;
     }
     NodeDouble(int value, int depth){
-        super(value);
+        this.value = value;
         this.depth = depth;
     }
 
@@ -22,7 +25,19 @@ public class NodeDouble extends Node {
         return depth;
     }
 
-    public void addParent(Node parent) {
+    void addSon(NodeDouble node){
+        sons.add(node);
+    }
+
+    public void addParent(NodeDouble parent) {
         this.parents.add(parent);
+    }
+
+    public List<NodeDouble> getSons() {
+        return new ArrayList<NodeDouble>(sons);
+    }
+
+    public int getValue() {
+        return value;
     }
 }
